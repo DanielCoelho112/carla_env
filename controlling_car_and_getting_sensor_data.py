@@ -30,9 +30,10 @@ def process_img(image):
 actor_list = []
 
 try:
-    client = carla.Client('localhost', 2000)
+    client = carla.Client("127.0.0.1", 2000)
     client.set_timeout(10.0)
-    world = client.get_world()
+    world = client.load_world('Town02')
+    time.sleep(10)
     blueprint_library = world.get_blueprint_library()
     bp = blueprint_library.filter("model3")[0]
     print(bp)
@@ -57,7 +58,7 @@ try:
     sensor.listen(lambda data: process_img(data))
     
     
-    time.sleep(10)
+    time.sleep(40)
     
     
 finally:
